@@ -1,0 +1,6 @@
+{
+  "name": "Oficina Salgueiro Motos",
+  "description": "Sistema de gerenciamento para oficina mecânica de motos com histórico por placa, peças trocadas, marcas e valores.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

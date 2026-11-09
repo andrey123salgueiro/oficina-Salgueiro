@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128;
+    }
+
+    function isValidOrder(data) {
+      return data.keys().hasAll(['id', 'orderNumber', 'licensePlate', 'clientName', 'bikeModel', 'serviceDate', 'totalAmount', 'status'])
+        && data.id is string && data.id.size() <= 128
+        && data.licensePlate is string && data.licensePlate.size() <= 32
+        && data.clientName is string && data.clientName.size() <= 256
+        && data.bikeModel is string && data.bikeModel.size() <= 256
+        && data.status is string && data.status.size() <= 64;
+    }
+
+    // Service Orders Collection - synced across devices
+    match /service_orders/{orderId} {
+      allow read: if true;
+      allow create: if isValidId(orderId) && isValidOrder(request.resource.data);
+      allow update: if isValidId(orderId) && isValidOrder(request.resource.data);
+      allow delete: if isValidId(orderId);
+    }
+  }
+}

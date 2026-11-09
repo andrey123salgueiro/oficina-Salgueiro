@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "ServiceOrder": {
+      "title": "ServiceOrder",
+      "description": "Ordem de serviço da Oficina Salgueiro Motos com placa, cliente, peças, marcas e garantia",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identificador único da ordem de serviço"
+        },
+        "orderNumber": {
+          "type": "number",
+          "description": "Número sequencial da O.S."
+        },
+        "licensePlate": {
+          "type": "string",
+          "description": "Placa da moto (ex: BRA2E19 ou ABC1234)"
+        },
+        "clientName": {
+          "type": "string",
+          "description": "Nome do cliente proprietário"
+        },
+        "clientPhone": {
+          "type": "string",
+          "description": "Telefone ou WhatsApp do cliente"
+        },
+        "bikeModel": {
+          "type": "string",
+          "description": "Marca e modelo da motocicleta"
+        },
+        "bikeYear": {
+          "type": "string",
+          "description": "Ano de fabricação da moto"
+        },
+        "mileage": {
+          "type": "number",
+          "description": "Quilometragem no momento do serviço"
+        },
+        "serviceDate": {
+          "type": "string",
+          "description": "Data de realização do serviço"
+        },
+        "parts": {
+          "type": "array",
+          "description": "Lista de peças trocadas com respectiva marca e valor"
+        },
+        "labor": {
+          "type": "array",
+          "description": "Lista de serviços e mão de obra realizados"
+        },
+        "partsTotal": {
+          "type": "number",
+          "description": "Soma do valor das peças trocadas"
+        },
+        "laborTotal": {
+          "type": "number",
+          "description": "Valor total cobrado pela mão de obra mecânica"
+        },
+        "discount": {
+          "type": "number",
+          "description": "Desconto concedido em reais"
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "Valor total final do serviço"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Forma de pagamento utilizada"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status da O.S."
+        },
+        "mechanicNotes": {
+          "type": "string",
+          "description": "Observações técnicas e laudo do mecânico"
+        },
+        "warrantyDays": {
+          "type": "number",
+          "description": "Dias de garantia legal / oficina"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp de criação"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp de última atualização"
+        }
+      },
+      "required": [
+        "id",
+        "orderNumber",
+        "licensePlate",
+        "clientName",
+        "bikeModel",
+        "serviceDate",
+        "totalAmount",
+        "status"
+      ]
+    }
+  },
+  "firestore": {
+    "/service_orders/{orderId}": {
+      "schema": "ServiceOrder",
+      "description": "Coleção de ordens de serviço da Oficina Mecânica Salgueiro"
+    }
+  }
+}
